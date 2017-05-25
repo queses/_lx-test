@@ -1,3 +1,4 @@
+'use strict'
 const { resolve } = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -5,6 +6,26 @@ const WriteFilePlugin = require('write-file-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const pkgInfo = require('./package.json')
 const url = require('url')
+const sharedConf = require('./webpack.config.shared')
+
+/**
+ * Defined loaders
+ */
+const cssLoader = {
+  loader: "css-loader",
+  options: {
+    importLoaders: 1,
+    minimize: process.env.NODE_ENV === 'production'
+  }
+}
+
+/**
+ * Defined plugins
+ */
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].css",
+  // disable: process.env.NODE_ENV === "development"
+})
 
 module.exports = (options = {}) => {
   const config = require('./config/' + (process.env.npm_config_config || options.config || 'default'))
@@ -31,12 +52,9 @@ module.exports = (options = {}) => {
               loader: 'vue-loader',
               options: {
                 postcss: [require('autoprefixer')()],
-                loaders: {
-                  css: ExtractTextPlugin.extract({
-                    use: 'css-loader',
-                    fallback: 'vue-style-loader'
-                  })
-                }
+                'css': 'vue-style-loader!css-loader',               
+                'scss': 'vue-style-loader!css-loader!sass-loader',
+                'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
               }
             },
             'eslint-loader'
@@ -60,6 +78,30 @@ module.exports = (options = {}) => {
               }
             }
           ]
+        },
+
+        {
+          test: /\.css$/,
+          loader: extractSass.extract({
+            use: [
+              cssLoader,
+            ],
+            // use style-loader in development
+            fallback: "style-loader"
+          })
+        },
+        {
+          test: /\.scss$/,
+          loader: extractSass.extract({
+            use: [
+              cssLoader,
+              // {loader: 'postcss-loader'},
+              {loader: "resolve-url-loader"},
+              {loader: "sass-loader"}
+            ],
+            // use style-loader in development
+            fallback: "style-loader"
+          })
         },
 
         {
@@ -89,7 +131,19 @@ module.exports = (options = {}) => {
       ]
     },
 
+    resolveLoader: {
+      alias: {
+        // necessary to to make lang="scss" work in test when using vue-loader's ?inject option 
+        // see discussion at https://github.com/vuejs/vue-loader/issues/724
+        'scss-loader': 'sass-loader'
+      }
+    },
+
     plugins: [
+      new webpack.ProvidePlugin({
+        '$': 'jquery',
+        'jQuery': 'jquery'
+      }),
       new HtmlWebpackPlugin({
         template: 'src/index.html'
       }),
@@ -98,27 +152,29 @@ module.exports = (options = {}) => {
         names: ['vendor', 'manifest']
       }),
 
-      new webpack.DefinePlugin({
-        DEBUG: Boolean(options.dev),
-        TARGET: '"web"',
-        VERSION: JSON.stringify(pkgInfo.version),
-        CONFIG: JSON.stringify(config.runtimeConfig)
-      }),
-
       new WriteFilePlugin(),
 
       new ExtractTextPlugin({
         filename: '[name].css?[contenthash]',
         allChunks: true,
         disable: options.dev
-      })
+      }),
+
+      // new webpack.DefinePlugin(Object.assign({
+      new webpack.DefinePlugin({
+        DEBUG: Boolean(options.dev),
+        TARGET: '"web"',
+        VERSION: JSON.stringify(pkgInfo.version),
+        CONFIG: JSON.stringify(config.runtimeConfig),
+      }),
+      // }, ))
+      new webpack.EnvironmentPlugin(sharedConf.env)
     ],
 
-    resolve: {
-      alias: {
-        '~': resolve(__dirname, 'src')
-      }
-    },
+    // resolve: {
+    //   alias: sharedConf.resolve.alias
+    // },
+    resolve: sharedConf.resolve,
 
     devServer: config.devServer ? {
       host: '0.0.0.0',

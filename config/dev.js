@@ -4,12 +4,13 @@ module.exports = {
     settingBar: false
   },
 
-  ssrPort: 8200,
+  ssrPort: 3000,
 
-  publicPath: 'http://127.0.0.1:8100/assets/',
+  publicPath: '/tmp/',
+  serveStaticMountPath: '/tmp',
 
   devServer: {
-    port: 8100,
+    port: 3100,
     proxy: {
       '/api/auth/': {
         target: 'http://api.example.dev',

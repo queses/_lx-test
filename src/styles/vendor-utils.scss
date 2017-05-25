@@ -1,0 +1,9 @@
+// Balloon
+[data-balloon-hidden=true] {
+	&:after {
+		display: none;
+	}
+	&:before {
+		display: none;
+	}
+}

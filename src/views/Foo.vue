@@ -18,7 +18,7 @@
 import config from '~/config'
 
 export default {
-  data() {
+  data () {
     return {
       title: '',
       description: '',
@@ -27,7 +27,7 @@ export default {
     }
   },
 
-  metaInfo() {
+  metaInfo () {
     return {
       title: this.title,
       meta: [
@@ -36,7 +36,7 @@ export default {
     }
   },
 
-  prefetch(route, store) {
+  prefetch (route, store) {
     return Promise.all([
       new Promise(resolve => {
         setTimeout(() => {
@@ -53,7 +53,7 @@ export default {
   },
 
   // won't run on server side
-  beforeMount() {
+  beforeMount () {
     console.log(this.a) //eslint-disable-line
 
     /*

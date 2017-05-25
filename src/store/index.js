@@ -1,27 +1,17 @@
-import Vue from 'vue'
 import Vuex from 'vuex'
 
-Vue.use(Vuex)
+import state from './state'
+// import * as getters from './getters'
+import * as mutations from './mutations'
+import * as actions from './actions'
 
-export default new Vuex.Store({
-  state: {
-    count: 0
-  },
-
-  mutations: {
-    increment(state) {
-      state.count++
-    }
-  },
-
-  actions: {
-    asyncIncrement({ commit }) {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          commit('increment')
-          resolve()
-        })
-      })
-    }
-  }
-})
+export default () => {
+  return new Vuex.Store({
+    state,
+    getters: {
+      favorites: (state) => state.favorites
+    },
+    mutations,
+    actions
+  })
+}

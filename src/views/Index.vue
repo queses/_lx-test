@@ -1,42 +1,235 @@
 <template>
-  <div class="foo">
-    <p>Hello world!</p>
-    <p>this.a: {{a}}</p>
-    <p><router-link :to="{ name: 'foo', params: { id: 123 } }">goto /foo/123</router-link></p>
-    <p><router-link to="/page-not-exist">goto /page-not-exist</router-link></p>
-    <p><router-link to="/show-error-page">goto /show-error-page</router-link></p>
-  </div>
+<section class="site-index">
+  <section id="banner">
+
+    <h1>Путешествие в родной дом</h1>
+
+    <div class="object-flat-index container">
+      <v-object-flat-search
+        type="index"
+        form-name="ObjectFlatSearch"
+        @filters-applied="onFiltersApplied"
+      ></v-object-flat-search>
+    </div>
+  </section>
+
+  <section id="why" class="container-fluid">
+    <article class="col-md-7">
+      <h3 class="col-md-12">Почему компания "Люксембург"?</h3>
+      <figure class="col-md-12">
+        <div class="col-md-4">
+          <img src="~@assets/img/landing/object-base.jpeg"/>
+        </div>
+        <figcaption class="col-md-8">
+          <p>
+            <strong>База актуальных объектов</strong> – Аренда, продажа свежих и созревших предложений,
+            находятся в постоянной работе с агентами, брокерами, администраторами на признак актуальности и
+            ликвидности.
+          </p>
+        </figcaption>
+      </figure>
+
+      <figure class="col-md-12">
+        <div class="col-md-4">
+          <img src="~@assets/img/landing/search.jpg"/>
+        </div>
+        <figcaption class="col-md-8">
+          <p>
+            <strong>Удобный поиск</strong> – структура сайта построена на фильтрах выбора недвижимости, где
+            всё максимально просто, а регистрация на сайте даёт возможность управлять интересными объектами
+            и предлагать свою цену, а постоянная рассылка держит в курсе всех выгодных предложений.
+          </p>
+        </figcaption>
+      </figure>
+
+      <figure class="col-md-12">
+        <div class="col-md-4">
+          <img src="~@assets/img/landing/ozenka.jpeg"/>
+        </div>
+        <figcaption class="col-md-8">
+          <p>
+            <strong>Оценка недвижимости</strong> – Узнать цену квартиры, дома, офиса сегодня? Какая цена
+            будет завтра? Перейдите на страницу «оценить»
+          </p>
+        </figcaption>
+      </figure>
+
+      <figure class="col-md-12">
+        <div class="col-md-4">
+          <img src="~@assets/img/landing/fast-sell.jpeg"/>
+        </div>
+        <figcaption class="col-md-8">
+          <strong>Срочный выкуп</strong> – возможность продать квартиру и получить деньги за три дня.
+        </figcaption>
+      </figure>
+
+      <figure class="col-md-12">
+        <div class="col-md-4">
+          <img src="~@assets/img/landing/discoteka.jpeg"/>
+        </div>
+        <figcaption class="col-md-8">
+          <strong>Ипотека одобрение</strong> – подать заявку, рассмотреть в короткие сроки, найти возможности.
+        </figcaption>
+      </figure>
+    </article>
+    <aside class="col-md-5">
+      <span>
+        <v-flat-card v-for="flat in flats" :key="flat.id"
+          modify-class="similar__item--home"
+          modify-caption="similar__item__caption--flat"
+          :flat="flat"
+        ></v-flat-card>
+      </span>
+      <div class="more-flats">
+        <a href="/object/flat">Посмотреть квартиры</a>
+      </div>
+    </aside>
+  </section>
+
+<!--     <section class="slider-box">
+    <section id="slider" class="slider">
+      <div class='slide' id="first-slide">
+        <div class='slidecontent col-md-4 col-md-offset-8'>
+          <h4>Нужно сдать, снять, продать или купить квартиру в сургуте? Обратитесь в
+            компания «ЛЮКСЕМБУРГ»!</h4>
+          <p>
+            Компания «Люксембург» — это совершенно новый элемент на современном рынке недвижимости. Это
+            компания, которая руководствуется международными стандартами ведения бизнеса и практикует
+            инновационный подход ко всем отраслям своей деятельности: будь то простейший механизм аренды
+            офиса или же комплекс услуг по приобретению загородного жилья.
+          </p>
+        </div>
+      </div>
+      <div class='slide' id="second-slide">
+        <div class='slidecontent col-md-4'>
+          <h4>ЗДЕСЬ ЕСТЬ ВСЁ, И ДАЖЕ БОЛЬШЕ!</h4>
+          <p>Сотрудники компании учли все Ваши пожелания и ожидания, охватили весь спектр услуг в сфере
+            недвижимости — иными словами, здесь Вы найдёте все то, что поможет нам вместе прийти к успешному
+            результату!</p>
+          <p>
+            Компания «Люксембург» не только осуществляет все виды операций с недвижимостью, но и заботится
+            о дополнительном комфорте для Вас. Мы предложим Вам любой пункт из широкого спектра услуг,
+            будь то юридическая консультация или даже дизайн интерьера Вашей квартиры, разработанный
+            по индивидуальному заказу.
+          </p>
+        </div>
+      </div>
+      <div class='slide' id="third-slide">
+        <div class='slidecontent col-md-8'>
+          <div class="container-fluid">
+            <h4 class="col-md-12">ВАШЕ ИДЕАЛЬНОЕ ЖИЛЬЕ</h4>
+            <div class="col-md-6">
+              <p>
+                Компания «Люксембург» г. Сургут — это надежный партнёр, на которого Вы всегда сможете
+                положиться при выборе недвижимости. Мы поможем найти оптимальный вариант,
+                соответствующий всем Вашим представлениям об идеальном жилье. Наша обширная база
+                недвижимости способна удовлетворить даже самые высокие требования клиентов.
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p>
+                Компания «Люксембург» г. Сургут — это надежный партнёр, на которого Вы всегда сможете
+                положиться при выборе недвижимости. Мы поможем найти оптимальный вариант,
+                соответствующий всем Вашим представлениям об идеальном жилье. Наша обширная база
+                недвижимости способна удовлетворить даже самые высокие требования клиентов.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+   </section>
+ -->    
+
+  <section class="prefooter container-fluid">
+    <div class="flats col-md-2">
+      <h4>Квартиры</h4>
+      <ul>
+        <li>Покупка</li>
+        <li>Продажа</li>
+        <li>Аренда</li>
+        <li>Ипотека</li>
+      </ul>
+    </div>
+    <div class="menu col-md-2">
+      <ul>
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Квартиры</a></li>
+        <li><a href="#">Вакансии</a></li>
+        <li><a href="#">О компании</a></li>
+      </ul>
+    </div>
+    <div class="contacts col-md-4">
+      <h4>Контакты</h4>
+      <ul>
+        <li><strong>АДРЕС</strong>: Г. Сургут, ул.Маяковского 21А, Офис 231</li>
+        <li><strong>E-MAIL</strong>: <a>an_luxemburg@mail.ru</a></li>
+        <li><strong>ДЕЖУРНЫЙ ТЕЛЕФОН</strong>: +7 (982) 413-33-48</li>
+      </ul>
+    </div>
+    <div class="callback col-md-4">
+      <h4>Остались вопросы? Оставьте свой телефон, и мы перезвоним Вам!</h4>
+      <button class="btn btn-default" type="button" name="button">Заказать звонок</button>
+    </div>
+  </section>
+</section>
 </template>
 
 <script>
+// import axios from '~plugins/axios'
+import VObjectFlatSearch from '@components/object/flat/_search'
+import VFlatCard from '@components/_flat-card'
+
 export default {
-  data() {
-    return {
-      a: 0
-    }
-  },
-
-  metaInfo: {
-    title: 'Vue SSR Boilerplate',
-    meta: [
-      { vmid: 'description', name: 'description', content: 'Vue SSR Boilerplate' }
-    ]
-  },
-
-  prefetch() {
-    return Promise.resolve({
-      a: 123
+  prefetch () {
+    // let streetRes = await axios.get('/geo/street/ajax-list')
+    let flatRes = global.axios.get('/object/flat/json-random-pages')
+    return flatRes.then((r) => {
+      return {
+        flats: r.data
+      }
     })
   },
-
-  // will be called on server side. check your console
-  created() {
-    console.log(this.a) //eslint-disable-line
+  head () {
+    return { }
   },
-
-  // won't run on server side
-  beforeMount() {
-    console.log(this.a) //eslint-disable-line
+  components: {
+    VObjectFlatSearch,
+    VFlatCard
+  },
+  data () {
+    return {
+      swiperOption: {
+        // pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: true
+      },
+      flats: null
+    }
+  },
+  mounted () {
+    // global.$('.slider').simpleSlider({
+    //   slides: '.slide',
+    //   swipe: true,
+    //   pauseOnHover: true,
+    //   useDefaultCSS: true
+    // })
+  },
+  methods: {
+    onFiltersApplied (payload) {
+      console.log(payload)
+      let query = global.utils.query.parse(payload)
+      console.log(query)
+      this.$router.push({ path: '/object/flat', query: query })
+    }
   }
 }
 </script>
+
+<style>
+</style>

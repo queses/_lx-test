@@ -1,0 +1,115 @@
+.agent-index {
+    padding-top: 70px;
+
+    .hvr-underline-from-center {
+        &:before {
+            background: $lux-green;
+            height: 3px;
+        }
+    }
+}
+
+.agent {
+    min-height: 135px;
+    margin-bottom: 15px;
+    padding: 7px 0;
+    box-shadow: 0 3px 7px #ccc9c9;
+    background: #fbfbfb;
+    border-radius: 4px;
+
+    &__avatar {
+        margin: 0 auto;
+        width: 140px;
+        border-radius: 100%;
+        background: no-repeat center center;
+        background-size: cover;
+        min-height: 140px;
+    }
+
+    &__info {
+
+        &__name {
+            font-weight: bold;
+            font-size: 16px;
+            color: #000;
+        }
+
+        &__post {
+            color: #828282;
+            font-size: 14px;
+        }
+
+        &__rating {
+            margin: 5px 0;
+            list-style-type: none;
+            display: flex;
+            padding: 0;
+
+            li {
+                color: $lux-orange;
+                margin-right: 8px;
+            }
+
+            .fa-star {
+                font-size: 20px;
+            }
+        }
+
+        &__list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            color: #000;
+            font-weight: 500;
+            font-size: 14px;
+
+            span {
+                font-weight: bold;
+                color: #4f4f4f;
+            }
+        }
+
+        &__phone {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+
+            a {
+                font-size: 16px;
+                color: #000;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .fa-phone {
+                margin-right: 5px;
+                font-size: 20px;
+            }
+        }
+    }
+
+    &__company {
+
+        &__name {
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+        }
+
+        &__logo {
+            height: 120px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    &__latest-object {
+      &__flat {
+        height: 140px;
+      }
+    }
+}

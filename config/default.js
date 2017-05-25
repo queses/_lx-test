@@ -4,7 +4,7 @@ module.exports = {
     settingBar: false
   },
 
-  ssrPort: 8200,
+  ssrPort: 3000,
 
   publicPath: '/assets/',
   serveStaticMountPath: '/assets'

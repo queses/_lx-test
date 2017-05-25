@@ -1,0 +1,25 @@
+.footer {
+    padding: 0;
+    height: auto;
+
+    #footer-nav {
+        margin-bottom: 0;
+        background: none;
+        border: none;
+        z-index: 2;
+
+        .navbar-brand {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        #site-menu li a {
+            background: none;
+            color: #222;
+        }
+    }
+}
+
+.footer-logo {
+    width: 144px;
+}

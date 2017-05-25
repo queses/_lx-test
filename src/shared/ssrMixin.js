@@ -1,5 +1,7 @@
+/* eslint no-return-assign: ["off", "always"] */
+
 export default {
-  created() {
+  created () {
     if (TARGET === 'web') {
       if (window.__INITIAL_COMPONENTS_STATE__ & this.$router) {
         const matched = this.$router.getMatchedComponents()

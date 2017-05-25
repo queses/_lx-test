@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <v-nav-bar/>
+    <div class="main-wrapper">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -11,6 +14,8 @@ import router from './router'
 import store from './store'
 import Meta from 'vue-meta'
 
+import VNavBar from '~components/NavBar.vue'
+
 Vue.use(Meta)
 
 export default {
@@ -19,6 +24,12 @@ export default {
   metaInfo: {
     title: 'Default Title',
     titleTemplate: '%s - Company Name'
+  },
+  components: {
+    'v-nav-bar': VNavBar
   }
 }
 </script>
+
+<style src="~styles/vendor.scss" lang="scss"/>
+<style src="~styles/style.scss" lang="scss"/>

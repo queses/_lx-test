@@ -1,0 +1,223 @@
+.agent-index {
+    padding-top: 70px;
+
+    .hvr-underline-from-center {
+        &:before {
+            background: $lux-green;
+            height: 3px;
+        }
+    }
+}
+
+.agents {
+    display: block;
+    min-height: 135px;
+    margin-bottom: 15px;
+    padding: 7px 0;
+    box-shadow: 0 3px 7px #ccc9c9;
+    background: #fbfbfb;
+    border-radius: 4px;
+
+    &__xs {
+        display: none;
+    }
+
+    &__avatar {
+        margin: 0 auto;
+        width: 140px;
+        border-radius: 100%;
+        background: no-repeat center center;
+        background-size: cover;
+        min-height: 140px;
+    }
+
+    &__info {
+
+        &__name {
+            font-weight: bold;
+            font-size: 16px;
+            color: #000;
+        }
+
+        &__post {
+            color: #828282;
+            font-size: 14px;
+        }
+
+        &__rating {
+            margin: 5px 0;
+            list-style-type: none;
+            display: flex;
+            padding: 0;
+
+            li {
+                color: $lux-orange;
+                margin-right: 8px;
+            }
+
+            .fa-star {
+                font-size: 20px;
+            }
+        }
+
+        &__list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            color: #000;
+            font-weight: 500;
+            font-size: 14px;
+
+            span {
+                font-weight: bold;
+                color: #4f4f4f;
+            }
+        }
+
+        &__phone {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+
+            a {
+                font-size: 16px;
+                color: #000;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .fa-phone {
+                margin-right: 5px;
+                font-size: 20px;
+            }
+        }
+    }
+
+    &__company {
+
+        &__name {
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+        }
+
+        &__logo {
+            height: 120px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    &__latest-object {
+        &__flat {
+            height: 140px;
+        }
+    }
+}
+
+.agent {
+    padding: 20px 0 30px 0;
+    box-shadow: 0 3px 7px #ccc9c9;
+    background: #fbfbfb;
+    margin-bottom: 30px;
+
+    &__avatar {
+        margin: 0 auto;
+        border-radius: 100%;
+        background: no-repeat center center;
+        background-size: cover;
+        width: 140px;
+        min-height: 140px;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+
+        &__name {
+            @extend .agents__info__name;
+            font-size: 18px;
+        }
+
+        &__post {
+            @extend .agents__info__post;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        &__rating {
+            @extend .agents__info__rating;
+            justify-content: center;
+
+            > li {
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        &__list {
+            @extend .agents__info__list;
+        }
+
+        &__phone {
+            color: #5b5b5b;
+            font-size: 19px;
+        }
+
+        &__share {
+            margin-top: 10px;
+
+            &__title {
+                font-size: 12px;
+            }
+
+            &__list {
+                display: flex;
+                list-style-type: none;
+                padding: 0;
+                margin-top: 5px;
+
+                &--fb {
+                    background: #3b5998;
+                }
+
+                &--gp {
+                    background: #db4437;
+                }
+
+                &--wa {
+                    background: #00e676;
+                }
+
+                &--vk {
+                    background: #507299;
+                }
+
+                > li {
+                    margin-right: 5px;
+
+                    > a {
+                        padding: 2px 4px;
+                        display: block;
+                        font-weight: bold;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    &__descr {
+        margin-top: 10px;
+
+        &__title {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+    }
+}

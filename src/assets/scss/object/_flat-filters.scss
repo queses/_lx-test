@@ -1,0 +1,58 @@
+.object-flat-index,
+.object-flat-view {
+
+  #object-search {
+    position: relative;
+    z-index: 2;
+
+    .col-sm-2 {
+      padding: 0 4px;
+
+      section {
+        display: block;
+        padding: 10px 0;
+      }
+    }
+
+    form {
+      float: right;
+
+      .input-group-btn {
+        display: inline;
+      }
+
+      button {
+        min-height: 40px;
+      }
+    }
+  }
+}
+
+#banner .object-flat-index {
+    width: 70%;
+}
+
+#land-object-search {
+  .col-sm-2,
+  .col-sm-3 {
+    padding: 0 2px;
+  }
+
+  .form-group {
+    height: auto;
+    clear: both;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  form .form-group {
+    margin-bottom: 0;
+
+    button {
+      display: inline-block;
+      width: 50%;
+      margin-right: 4px;
+    }
+  }
+}
